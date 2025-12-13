@@ -141,26 +141,29 @@ function App() {
   const [fontSize, setFontSize] = useState(14);
   const [wordCount, setWordCount] = useState(0);
 
-  // Load from localStorage on mount
-  useEffect(() => {
-    const savedColumns = localStorage.getItem(COLUMNS_KEY);
-    const savedContent = localStorage.getItem(STORAGE_KEY);
-    const savedFontSize = localStorage.getItem(FONT_SIZE_KEY);
+  /// Load from localStorage on mount
+useEffect(() => {
+  const savedColumns = localStorage.getItem(COLUMNS_KEY);
+  const savedContent = localStorage.getItem(STORAGE_KEY);
+  const savedFontSize = localStorage.getItem(FONT_SIZE_KEY);
 
-    if (savedContent) {
-      setContent(savedContent);
-    } else {
-      setContent(DEFAULT_CONTENT);
-    }
+  if (savedColumns) setColumns(parseInt(savedColumns, 10));
+  if (savedFontSize) setFontSize(parseInt(savedFontSize, 10));
 
-    if (savedColumns) {
-      setColumns(parseInt(savedColumns, 10));
-    }
+  if (savedContent) {
+    setContent(savedContent);
+    return;
+  }
 
-    if (savedFontSize) {
-      setFontSize(parseInt(savedFontSize, 10));
-    }
-  }, []);
+  fetch(`${import.meta.env.BASE_URL}md/my.md`)
+    .then((res) => {
+      if (!res.ok) throw new Error('Failed to load default md');
+      return res.text();
+    })
+    .then((text) => setContent(text))
+    .catch(() => setContent(DEFAULT_CONTENT));
+}, []);
+
 
   // Auto-save to localStorage and calculate word count
   useEffect(() => {
