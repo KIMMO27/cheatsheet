@@ -150,10 +150,11 @@ useEffect(() => {
   if (savedColumns) setColumns(parseInt(savedColumns, 10));
   if (savedFontSize) setFontSize(parseInt(savedFontSize, 10));
 
-  if (savedContent) {
-    setContent(savedContent);
-    return;
-  }
+  if (savedContent && savedContent !== DEFAULT_CONTENT) {
+  setContent(savedContent);
+  return;
+}
+
 
   fetch(`${import.meta.env.BASE_URL}md/my.md`)
     .then((res) => {
