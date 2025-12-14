@@ -19,7 +19,7 @@ import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-yaml';
 import 'prismjs/components/prism-markdown';
 
-const Preview = ({ content, columns, fontSize = 14 }) => {
+const Preview = ({ content, columns, fontSize = 14, fontColor }) => {
   const previewRef = useRef(null);
   const [processedHTML, setProcessedHTML] = useState('');
 
@@ -76,6 +76,7 @@ const Preview = ({ content, columns, fontSize = 14 }) => {
     fontSize: `${fontSize}px`,
     columnCount: columns,
     columnGap: '12px',
+    color: fontColor,
   };
 
   return (

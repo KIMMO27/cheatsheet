@@ -211,9 +211,9 @@ useEffect(() => {
         foreignObjectRendering: false
       },
       jsPDF: {
-        unit: 'in',
-        format: 'letter',
-        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4',
+        orientation: 'landscape',
         compress: false,
         precision: 16
       },

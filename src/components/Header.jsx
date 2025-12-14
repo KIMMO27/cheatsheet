@@ -45,6 +45,34 @@ const Header = ({
           >
             3 Col
           </button>
+                   <button
+             className={`column-btn ${columns === 4 ? 'active' : ''}`}
+             onClick={() => onColumnsChange(4)}
+             title="4 Column Layout"
+          >
+            4 Col
+          </button>
+          <button
+             className={`column-btn ${columns === 5 ? 'active' : ''}`}
+             onClick={() => onColumnsChange(5)}
+             title="5 Column Layout"
+          >
+            5 Col
+          </button>
+          <button
+             className={`column-btn ${columns === 6 ? 'active' : ''}`}
+             onClick={() => onColumnsChange(6)}
+             title="6 Column Layout"
+          >
+            6 Col
+          </button>
+          <button
+             className={`column-btn ${columns === 7 ? 'active' : ''}`}
+             onClick={() => onColumnsChange(7)}
+             title="7 Column Layout"
+          >
+            7 Col
+          </button>
         </div>
       </div>
       <div className="header-controls">
