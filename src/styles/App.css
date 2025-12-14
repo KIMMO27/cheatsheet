@@ -323,7 +323,7 @@ code {
 }
 
 .preview-wrapper {
-  max-width: 1200px;
+  max-width: none;
   min-width: 400px;
   margin: 0 auto;
   background-color: white;
@@ -632,6 +632,59 @@ code {
 .preview-wrapper img {
   page-break-inside: avoid;
   break-inside: avoid;
+}
+
+/* ===== A4 Page Template (INSERT HERE) ===== */
+.page {
+  width: 297mm;
+  height: 210mm;
+  box-sizing: border-box;
+  padding: 10mm;
+  background: #fff;
+
+  /* force page separation */
+  break-after: page;
+  page-break-after: always;
+
+  /* per-page columns */
+  column-count: var(--cols, 7);
+  column-gap: 8px;
+
+  /* per-page font color */
+  color: var(--ink, #111);
+  
+  overflow: hidden;
+}
+
+/* screen preview look like paper */
+.preview-wrapper .page {
+  margin: 10px auto;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* avoid splitting important blocks */
+.page h1, .page h2, .page h3,
+.page pre, .page blockquote,
+.page ul, .page ol,
+.page table, .page img {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* optional color helpers */
+.c-red { color: #c62828; }
+.c-blue { color: #1565c0; }
+.c-green { color: #2e7d32; }
+.c-gray { color: #555; }
+
+/* print: remove paper shadow/border */
+@media print {
+  .preview-wrapper .page {
+    margin: 0;
+    border: none;
+    box-shadow: none;
+  }
 }
 
 @media print {
